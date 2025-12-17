@@ -57,28 +57,31 @@ body {
 .helmet img {
   width: 520px;
   opacity: 0.95;
-}
-/* HELMET CONTAINER */
-.helmet {
+}.helmet {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* FLOATING TITLE ON HELMET */
+/* TITLE ON HELMET – CONTROLLED & CLEAN */
 .helmet-title {
   position: absolute;
-  top: -70px;
+  top: 50%;
+  transform: translateY(-50%);
   width: 100%;
   text-align: center;
-  font-size: 64px;
+
+  font-size: 72px;
   font-weight: 900;
-  color: #0b2a4a;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   text-transform: uppercase;
+
+  color: rgba(11, 42, 74, 0.25); /* subtle */
+  z-index: 2;
   pointer-events: none;
 }
+
 
 /* MASSIVE TILES – FIXED */
 .tile.massive {
