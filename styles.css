@@ -1,0 +1,102 @@
+* {
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: #f4f9ff;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER */
+.header {
+  height: 120px;
+  background: #e3f0ff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 60px;
+  border-bottom: 2px solid #c9def5;
+}
+
+.header h1 {
+  font-size: 42px;
+  font-weight: 800;
+  color: #163a5f;
+  letter-spacing: 1px;
+}
+
+.logo {
+  height: 80px;
+}
+
+/* MAIN */
+.main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 40px 80px;
+}
+
+.helmet img {
+  width: 360px;
+  opacity: 0.95;
+}
+
+/* TILES */
+.tiles {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.tile {
+  width: 620px;
+  height: 220px;
+  border-radius: 28px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.name {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  color: #333;
+}
+
+.value {
+  font-size: 88px;
+  font-weight: 800;
+}
+
+.safe {
+  background: #e6e6e6;
+}
+
+.warn {
+  background: #fff2cc;
+}
+
+.danger {
+  background: #ffd6d6;
+}
+
+/* FOOTER */
+.footer {
+  height: 80px;
+  background: #163a5f;
+  color: #ffffff;
+  font-size: 26px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.6px;
+}
