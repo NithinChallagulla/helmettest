@@ -107,14 +107,16 @@ body {
 }
 
 /* FOOTER */
+/* FOOTER – MASSIVE SLOGAN */
 .footer {
-  height: 90px;
+  height: 160px;
   background: #0b2a4a;
-  color: #fff;
-  font-size: 30px;
-  font-weight: 700;
+  color: #ffffff;
+  font-size: 56px;
+  font-weight: 900;
+  letter-spacing: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
-  letter-spacing: 1px;
+  text-transform: uppercase;
 }
