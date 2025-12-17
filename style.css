@@ -64,28 +64,29 @@ body {
   align-items: center;
   justify-content: center;
 
-  /* 👇 push helmet down */
-  margin-top: 60px;
+  /* push helmet clearly down */
+  margin-top: 120px;
 }
+
 
 /* TITLE ON HELMET – CONTROLLED & CLEAN */
 .helmet-title {
   position: absolute;
 
-  /* 👇 move title ABOVE helmet */
-  top: -110px;
+  /* lift title above helmet */
+  top: -160px;
 
   width: 100%;
   text-align: center;
 
-  font-size: 72px;
+  font-size: 76px;
   font-weight: 900;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   text-transform: uppercase;
 
-  color: rgba(11, 42, 74, 0.35);
+  color: rgba(11, 42, 74, 0.28);
+  z-index: 5;              /* ensure it stays above */
   pointer-events: none;
-  z-index: 2;
 }
 
 
