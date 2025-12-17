@@ -57,18 +57,24 @@ body {
 .helmet img {
   width: 520px;
   opacity: 0.95;
-}.helmet {
+}
+.helmet {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  /* 👇 push helmet down */
+  margin-top: 60px;
 }
 
 /* TITLE ON HELMET – CONTROLLED & CLEAN */
 .helmet-title {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+
+  /* 👇 move title ABOVE helmet */
+  top: -110px;
+
   width: 100%;
   text-align: center;
 
@@ -77,10 +83,11 @@ body {
   letter-spacing: 3px;
   text-transform: uppercase;
 
-  color: rgba(11, 42, 74, 0.25); /* subtle */
-  z-index: 2;
+  color: rgba(11, 42, 74, 0.35);
   pointer-events: none;
+  z-index: 2;
 }
+
 
 
 /* MASSIVE TILES – FIXED */
