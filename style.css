@@ -59,33 +59,39 @@ body {
   opacity: 0.95;
 }
 
-/* MASSIVE TILES */
+/* MASSIVE TILES – FIXED */
 .tile.massive {
-  width: 620px;
-  height: 520px;
-  border-radius: 40px;
-  padding: 40px;
+  width: 720px;
+  height: 560px;
+  border-radius: 36px;
+  padding: 48px 40px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
-/* STREAM NAME – EXTREMELY MASSIVE */
+/* PLACE NAME – BANNER STYLE */
 .name {
-  font-size: 54px;
+  width: 100%;
+  text-align: center;
+  font-size: 56px;
   font-weight: 900;
-  letter-spacing: 1.5px;
-  margin-bottom: 20px;
+  letter-spacing: 2px;
   color: #111;
+  background: rgba(0,0,0,0.06);
+  padding: 18px 12px;
+  border-radius: 18px;
 }
 
 /* PERCENTAGE – DOMINANT */
 .value {
-  font-size: 140px;
+  font-size: 180px;
   font-weight: 900;
   line-height: 1;
+  color: #000;
 }
+
 
 /* STATUS COLORS */
 .safe {
