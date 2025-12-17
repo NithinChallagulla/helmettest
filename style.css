@@ -58,6 +58,27 @@ body {
   width: 520px;
   opacity: 0.95;
 }
+/* HELMET CONTAINER */
+.helmet {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* FLOATING TITLE ON HELMET */
+.helmet-title {
+  position: absolute;
+  top: -70px;
+  width: 100%;
+  text-align: center;
+  font-size: 64px;
+  font-weight: 900;
+  color: #0b2a4a;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  pointer-events: none;
+}
 
 /* MASSIVE TILES – FIXED */
 .tile.massive {
