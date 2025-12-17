@@ -4,48 +4,39 @@
   <meta charset="UTF-8" />
   <title>NTR Police Helmet Dashboard</title>
   <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+</head><body>
 
   <!-- HEADER -->
   <header class="header">
     <img src="logo1.png" class="logo left" />
-    <h1>NTR Police Commissionerate</h1>
+    <div class="titles">
+      <h1>NTR Police Commissionerate</h1>
+      <h2>Helmet Obedience Percentage</h2>
+    </div>
     <img src="logo2.png" class="logo right" />
   </header>
 
   <!-- MAIN -->
   <main class="main">
 
-  <!-- SLOGAN -->
-  <div class="center-slogan">
-    Every 1% increase saves lives. Wear a helmet.
-  </div>
+    <!-- LEFT TILE -->
+    <div class="tile massive safe" id="benzTile">
+      <div class="name">BENZ CIRCLE</div>
+      <div class="value" id="benzValue">92%</div>
+    </div>
 
-  <div class="content">
-
-    <!-- Helmet Icon -->
+    <!-- HELMET -->
     <div class="helmet">
       <img src="helmetlogo.png" />
     </div>
 
-    <!-- Tiles -->
-    <div class="tiles">
-
-      <div class="tile safe" id="benzTile">
-        <div class="name">BENZ CIRCLE JUNCTION</div>
-        <div class="value" id="benzValue">92%</div>
-      </div>
-
-      <div class="tile safe" id="rameshTile">
-        <div class="name">RAMESH HOSPITAL JUNCTION</div>
-        <div class="value" id="rameshValue">88%</div>
-      </div>
-
+    <!-- RIGHT TILE -->
+    <div class="tile massive safe" id="rameshTile">
+      <div class="name">RAMESH HOSPITAL</div>
+      <div class="value" id="rameshValue">88%</div>
     </div>
-  </div>
-</main>
 
+  </main>
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -54,4 +45,3 @@
 
   <script src="app.js"></script>
 </body>
-</html>
