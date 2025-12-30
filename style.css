@@ -117,3 +117,13 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+
+.time {
+  font-size: 18px;
+  font-weight: 700;
+  color: #444;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
