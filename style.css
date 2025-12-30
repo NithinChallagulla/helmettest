@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: system-ui, sans-serif;
 }
 
 body {
@@ -9,26 +9,27 @@ body {
   background: #eef5ff;
   display: flex;
   flex-direction: column;
+  overflow: hidden; /* 🚫 NO SCROLL */
 }
 
 /* HEADER */
 .header {
-  height: 140px;
+  height: 90px;
   background: #dcecff;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 80px;
-  border-bottom: 4px solid #bcd4f1;
+  padding: 0 40px;
 }
 
-.logo { height: 96px; }
-
-.titles h1 {
-  font-size: 52px;
+.header h1 {
+  font-size: 34px;
   font-weight: 900;
-  margin: 0;
   color: #0b2a4a;
+}
+
+.logo {
+  height: 64px;
 }
 
 /* DASHBOARD */
@@ -36,44 +37,31 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: space-evenly;
 }
 
 /* ROWS */
 .row {
-  width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 30px;
 }
 
-/* HELMET */
-.helmet {
-  position: relative;
-  margin: 40px 0;
+.row.top {
+  margin-top: 10px;
 }
 
-.helmet img {
-  width: 520px;
+.row.bottom {
+  margin-bottom: 10px;
 }
 
-.helmet-title {
-  position: absolute;
-  top: -120px;
-  width: 100%;
-  text-align: center;
-  font-size: 44px;
-  font-weight: 900;
-  letter-spacing: 3px;
-  color: rgba(11, 42, 74, 0.9);
-}
-
-/* TILES */
-.tile.massive {
-  width: 560px;
-  height: 440px;
-  border-radius: 32px;
-  padding: 36px;
+/* TILE */
+.tile {
+  width: 360px;
+  height: 240px;
+  background: #e6e6e6;
+  border-radius: 22px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -81,17 +69,36 @@ body {
 }
 
 .name {
-  font-size: 42px;
+  font-size: 26px;
   font-weight: 900;
   background: rgba(0,0,0,0.08);
-  padding: 14px;
-  border-radius: 16px;
+  padding: 10px;
+  border-radius: 12px;
   text-align: center;
+  width: 100%;
 }
 
 .value {
-  font-size: 140px;
+  font-size: 88px;
   font-weight: 900;
+}
+
+/* HELMET */
+.helmet {
+  position: relative;
+  text-align: center;
+}
+
+.helmet img {
+  width: 280px;
+}
+
+.helmet-title {
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  color: #0b2a4a;
 }
 
 /* STATES */
@@ -101,13 +108,12 @@ body {
 
 /* FOOTER */
 .footer {
-  height: 160px;
+  height: 70px;
   background: #0b2a4a;
   color: white;
-  font-size: 56px;
+  font-size: 26px;
   font-weight: 900;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-transform: uppercase;
 }
