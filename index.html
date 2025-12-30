@@ -4,47 +4,62 @@
   <meta charset="UTF-8" />
   <title>NTR Police Helmet Dashboard</title>
   <link rel="stylesheet" href="style.css" />
-</head><body>
+</head>
+<body>
 
-  <!-- HEADER -->
-  <header class="header">
-    <img src="logo1.png" class="logo left" />
-    <div class="titles">
-      <h1>NTR Police Commissionerate</h1>
-    </div>
-    <img src="logo2.png" class="logo right" />
-  </header>
+<header class="header">
+  <img src="logo1.png" class="logo left" />
+  <div class="titles">
+    <h1>NTR Police Commissionerate</h1>
+  </div>
+  <img src="logo2.png" class="logo right" />
+</header>
 
-  <!-- MAIN -->
-  <main class="main">
+<main class="dashboard">
 
-    <!-- LEFT TILE -->
+  <!-- TOP ROW -->
+  <div class="row">
     <div class="tile massive safe" id="benzTile">
       <div class="name">DCP BUNGALOW</div>
-      <div class="value" id="benzValue">92%</div>
+      <div class="value" id="benzValue">--%</div>
     </div>
 
-    <!-- HELMET -->
-   <!-- HELMET -->
-<div class="helmet">
-  <div class="helmet-title">HELMET OBEDIENCE PERCENTAGE</div>
-  <img src="helmetlogo.png" />
-</div>
-
-
-
-    <!-- RIGHT TILE -->
     <div class="tile massive safe" id="rameshTile">
       <div class="name">RAMESH HOSPITAL JUNCTION</div>
-      <div class="value" id="rameshValue">88%</div>
+      <div class="value" id="rameshValue">--%</div>
+    </div>
+  </div>
+
+  <!-- CENTER -->
+  <div class="helmet">
+    <div class="helmet-title">HELMET OBEDIENCE PERCENTAGE</div>
+    <img src="helmetlogo.png" />
+  </div>
+
+  <!-- BOTTOM ROW -->
+  <div class="row">
+    <div class="tile massive safe" id="machavaramTile">
+      <div class="name">MACHAVARAM</div>
+      <div class="value" id="machavaramValue">--%</div>
     </div>
 
-  </main>
+    <div class="tile massive safe" id="eluruTile">
+      <div class="name">ELURU ROAD</div>
+      <div class="value" id="eluruValue">--%</div>
+    </div>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    Every 1% increase saves lives. Wear a helmet.
-  </footer>
+    <div class="tile massive safe" id="suryaraopetaTile">
+      <div class="name">SURYARAOPETA</div>
+      <div class="value" id="suryaraopetaValue">--%</div>
+    </div>
+  </div>
 
-  <script src="app.js"></script>
+</main>
+
+<footer class="footer">
+  Every 1% increase saves lives. Wear a helmet.
+</footer>
+
+<script src="app.js"></script>
 </body>
+</html>
