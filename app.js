@@ -1,13 +1,14 @@
-// ---------------- CONFIG ----------------
-const MAX_VALUE = 82;
-const MIN_VALUE = 0;
+const MAX = 82;
+const MIN = 0;
 
-// Clamp helper
 function clamp(v) {
-  return Math.max(MIN_VALUE, Math.min(MAX_VALUE, v));
+  return Math.max(MIN, Math.min(MAX, v));
 }
 
-// Tile color logic
+function randomStart() {
+  return Math.floor(70 + Math.random() * 13);
+}
+
 function updateColor(tile, value) {
   tile.className = "tile massive";
   if (value < 40) tile.classList.add("danger");
@@ -15,12 +16,6 @@ function updateColor(tile, value) {
   else tile.classList.add("safe");
 }
 
-// Random believable start (70–82)
-function randomStart() {
-  return Math.floor(70 + Math.random() * 13);
-}
-
-// ---------------- LOCATIONS ----------------
 const locations = {
   benz: randomStart(),
   ramesh: randomStart(),
@@ -29,63 +24,44 @@ const locations = {
   suryaraopeta: randomStart(),
 };
 
-const elements = {
-  benz: {
-    value: document.getElementById("benzValue"),
-    tile: document.getElementById("benzTile"),
-  },
-  ramesh: {
-    value: document.getElementById("rameshValue"),
-    tile: document.getElementById("rameshTile"),
-  },
-  machavaram: {
-    value: document.getElementById("machavaramValue"),
-    tile: document.getElementById("machavaramTile"),
-  },
-  eluru: {
-    value: document.getElementById("eluruValue"),
-    tile: document.getElementById("eluruTile"),
-  },
-  suryaraopeta: {
-    value: document.getElementById("suryaraopetaValue"),
-    tile: document.getElementById("suryaraopetaTile"),
-  },
+const el = {
+  benz: ["benzValue", "benzTile"],
+  ramesh: ["rameshValue", "rameshTile"],
+  machavaram: ["machavaramValue", "machavaramTile"],
+  eluru: ["eluruValue", "eluruTile"],
+  suryaraopeta: ["suryaraopetaValue", "suryaraopetaTile"],
 };
 
-// Initial render
-function renderAll() {
-  Object.keys(locations).forEach((key) => {
-    const val = locations[key];
-    elements[key].value.textContent = val + "%";
-    updateColor(elements[key].tile, val);
+function render() {
+  Object.keys(locations).forEach((k) => {
+    const [v, t] = el[k];
+    document.getElementById(v).textContent = locations[k] + "%";
+    updateColor(document.getElementById(t), locations[k]);
   });
 }
-renderAll();
 
-// ---------------- BEHAVIOUR ----------------
+render();
 
-// 🔻 Small decay every 10s (−2 to −3%)
+// small decay
 setInterval(() => {
-  Object.keys(locations).forEach((key) => {
-    locations[key] = clamp(
-      locations[key] - (2 + Math.floor(Math.random() * 2))
-    );
-  });
-  renderAll();
+  Object.keys(locations).forEach(
+    (k) => (locations[k] = clamp(locations[k] - (2 + Math.floor(Math.random() * 2))))
+  );
+  render();
 }, 10000);
 
-// 🔺 Small recovery every 30s (+3%)
+// small recovery
 setInterval(() => {
-  Object.keys(locations).forEach((key) => {
-    locations[key] = clamp(locations[key] + 3);
-  });
-  renderAll();
+  Object.keys(locations).forEach(
+    (k) => (locations[k] = clamp(locations[k] + 3))
+  );
+  render();
 }, 30000);
 
-// 🚨 Major credibility drop every 40 minutes (−25%)
+// major credibility drop
 setInterval(() => {
-  Object.keys(locations).forEach((key) => {
-    locations[key] = clamp(locations[key] - 25);
-  });
-  renderAll();
+  Object.keys(locations).forEach(
+    (k) => (locations[k] = clamp(locations[k] - 25))
+  );
+  render();
 }, 40 * 60 * 1000);
