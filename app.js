@@ -1,53 +1,91 @@
+// ---------------- CONFIG ----------------
+const MAX_VALUE = 82;
+const MIN_VALUE = 0;
+
+// Clamp helper
 function clamp(v) {
-  return Math.max(0, Math.min(92, v)); // 🔒 HARD CAP AT 92
+  return Math.max(MIN_VALUE, Math.min(MAX_VALUE, v));
 }
 
+// Tile color logic
 function updateColor(tile, value) {
   tile.className = "tile massive";
-  if (value < 50) tile.classList.add("danger");
-  else if (value < 80) tile.classList.add("warn");
+  if (value < 40) tile.classList.add("danger");
+  else if (value < 65) tile.classList.add("warn");
   else tile.classList.add("safe");
 }
 
-// Random start between 85–92
+// Random believable start (70–82)
 function randomStart() {
-  return Math.floor(85 + Math.random() * 8);
+  return Math.floor(70 + Math.random() * 13);
 }
 
-let benz = randomStart();
-let ramesh = randomStart();
+// ---------------- LOCATIONS ----------------
+const locations = {
+  benz: randomStart(),
+  ramesh: randomStart(),
+  machavaram: randomStart(),
+  eluru: randomStart(),
+  suryaraopeta: randomStart(),
+};
 
-const benzValue = document.getElementById("benzValue");
-const rameshValue = document.getElementById("rameshValue");
-const benzTile = document.getElementById("benzTile");
-const rameshTile = document.getElementById("rameshTile");
+const elements = {
+  benz: {
+    value: document.getElementById("benzValue"),
+    tile: document.getElementById("benzTile"),
+  },
+  ramesh: {
+    value: document.getElementById("rameshValue"),
+    tile: document.getElementById("rameshTile"),
+  },
+  machavaram: {
+    value: document.getElementById("machavaramValue"),
+    tile: document.getElementById("machavaramTile"),
+  },
+  eluru: {
+    value: document.getElementById("eluruValue"),
+    tile: document.getElementById("eluruTile"),
+  },
+  suryaraopeta: {
+    value: document.getElementById("suryaraopetaValue"),
+    tile: document.getElementById("suryaraopetaTile"),
+  },
+};
 
 // Initial render
-benzValue.textContent = benz + "%";
-rameshValue.textContent = ramesh + "%";
-updateColor(benzTile, benz);
-updateColor(rameshTile, ramesh);
+function renderAll() {
+  Object.keys(locations).forEach((key) => {
+    const val = locations[key];
+    elements[key].value.textContent = val + "%";
+    updateColor(elements[key].tile, val);
+  });
+}
+renderAll();
 
-// 🔻 Decrease every 10s (1–3%)
+// ---------------- BEHAVIOUR ----------------
+
+// 🔻 Small decay every 10s (−2 to −3%)
 setInterval(() => {
-  benz = clamp(benz - (1 + Math.floor(Math.random() * 3)));
-  ramesh = clamp(ramesh - (1 + Math.floor(Math.random() * 3)));
-
-  benzValue.textContent = benz + "%";
-  rameshValue.textContent = ramesh + "%";
-
-  updateColor(benzTile, benz);
-  updateColor(rameshTile, ramesh);
+  Object.keys(locations).forEach((key) => {
+    locations[key] = clamp(
+      locations[key] - (2 + Math.floor(Math.random() * 2))
+    );
+  });
+  renderAll();
 }, 10000);
 
-// 🔺 Increase every 25s (+4 but capped at 92)
+// 🔺 Small recovery every 30s (+3%)
 setInterval(() => {
-  benz = clamp(benz + 4);
-  ramesh = clamp(ramesh + 4);
+  Object.keys(locations).forEach((key) => {
+    locations[key] = clamp(locations[key] + 3);
+  });
+  renderAll();
+}, 30000);
 
-  benzValue.textContent = benz + "%";
-  rameshValue.textContent = ramesh + "%";
-
-  updateColor(benzTile, benz);
-  updateColor(rameshTile, ramesh);
-}, 25000);
+// 🚨 Major credibility drop every 40 minutes (−25%)
+setInterval(() => {
+  Object.keys(locations).forEach((key) => {
+    locations[key] = clamp(locations[key] - 25);
+  });
+  renderAll();
+}, 40 * 60 * 1000);
