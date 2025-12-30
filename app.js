@@ -10,7 +10,7 @@ function randomStart() {
 }
 
 function updateColor(tile, value) {
-  tile.className = "tile massive";
+  tile.classList.remove("safe", "warn", "danger");
   if (value < 40) tile.classList.add("danger");
   else if (value < 65) tile.classList.add("warn");
   else tile.classList.add("safe");
@@ -24,44 +24,35 @@ const locations = {
   suryaraopeta: randomStart(),
 };
 
-const el = {
-  benz: ["benzValue", "benzTile"],
-  ramesh: ["rameshValue", "rameshTile"],
-  machavaram: ["machavaramValue", "machavaramTile"],
-  eluru: ["eluruValue", "eluruTile"],
-  suryaraopeta: ["suryaraopetaValue", "suryaraopetaTile"],
-};
-
 function render() {
   Object.keys(locations).forEach((k) => {
-    const [v, t] = el[k];
-    document.getElementById(v).textContent = locations[k] + "%";
-    updateColor(document.getElementById(t), locations[k]);
+    document.getElementById(k + "Value").textContent = locations[k] + "%";
+    updateColor(document.getElementById(k + "Tile"), locations[k]);
   });
 }
 
 render();
 
-// small decay
+// decay
 setInterval(() => {
   Object.keys(locations).forEach(
-    (k) => (locations[k] = clamp(locations[k] - (2 + Math.floor(Math.random() * 2))))
+    k => locations[k] = clamp(locations[k] - (2 + Math.floor(Math.random() * 2)))
   );
   render();
 }, 10000);
 
-// small recovery
+// recovery
 setInterval(() => {
   Object.keys(locations).forEach(
-    (k) => (locations[k] = clamp(locations[k] + 3))
+    k => locations[k] = clamp(locations[k] + 3)
   );
   render();
 }, 30000);
 
-// major credibility drop
+// credibility drop
 setInterval(() => {
   Object.keys(locations).forEach(
-    (k) => (locations[k] = clamp(locations[k] - 25))
+    k => locations[k] = clamp(locations[k] - 25)
   );
   render();
 }, 40 * 60 * 1000);
