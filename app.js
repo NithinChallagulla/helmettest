@@ -1,5 +1,6 @@
 const MAX = 82;
 const MIN = 0;
+const STORAGE_KEY = "helmet_obedience_data";
 
 function clamp(v) {
   return Math.max(MIN, Math.min(MAX, v));
@@ -16,13 +17,41 @@ function updateColor(tile, value) {
   else tile.classList.add("safe");
 }
 
-const locations = {
-  benz: randomStart(),
-  ramesh: randomStart(),
-  machavaram: randomStart(),
-  eluru: randomStart(),
-  suryaraopeta: randomStart(),
-};
+/* ---------------- LOAD / SAVE ---------------- */
+
+function loadLocations() {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      if (parsed && typeof parsed === "object") return parsed;
+    }
+  } catch (e) {
+    console.warn("Storage read failed, resetting.");
+  }
+
+  // fallback: first-time random init
+  const fresh = {
+    benz: randomStart(),
+    ramesh: randomStart(),
+    machavaram: randomStart(),
+    eluru: randomStart(),
+    suryaraopeta: randomStart(),
+  };
+
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(fresh));
+  return fresh;
+}
+
+function saveLocations() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(locations));
+}
+
+/* ---------------- STATE ---------------- */
+
+const locations = loadLocations();
+
+/* ---------------- RENDER ---------------- */
 
 function render() {
   Object.keys(locations).forEach((k) => {
@@ -33,15 +62,15 @@ function render() {
 
 render();
 
-/* 🔻 DECAY + CRACKDOWN LOGIC */
+/* 🔻 DECAY + ENFORCEMENT GIMMICK */
 setInterval(() => {
   Object.keys(locations).forEach((k) => {
-    // normal decay
+    // decay
     locations[k] = clamp(
       locations[k] - (2 + Math.floor(Math.random() * 2))
     );
 
-    // 🚨 gimmick: enforcement kick-in
+    // 🚨 crackdown bounce
     if (locations[k] < 55) {
       locations[k] = clamp(
         locations[k] + (8 + Math.floor(Math.random() * 3))
@@ -49,6 +78,7 @@ setInterval(() => {
     }
   });
 
+  saveLocations();
   render();
 }, 10000);
 
@@ -58,6 +88,7 @@ setInterval(() => {
     locations[k] = clamp(locations[k] + 3);
   });
 
+  saveLocations();
   render();
 }, 30000);
 
@@ -67,5 +98,6 @@ setInterval(() => {
     locations[k] = clamp(locations[k] - 25);
   });
 
+  saveLocations();
   render();
 }, 40 * 60 * 1000);
