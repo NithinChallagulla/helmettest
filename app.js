@@ -33,26 +33,39 @@ function render() {
 
 render();
 
-// decay
+/* 🔻 DECAY + CRACKDOWN LOGIC */
 setInterval(() => {
-  Object.keys(locations).forEach(
-    k => locations[k] = clamp(locations[k] - (2 + Math.floor(Math.random() * 2)))
-  );
+  Object.keys(locations).forEach((k) => {
+    // normal decay
+    locations[k] = clamp(
+      locations[k] - (2 + Math.floor(Math.random() * 2))
+    );
+
+    // 🚨 gimmick: enforcement kick-in
+    if (locations[k] < 55) {
+      locations[k] = clamp(
+        locations[k] + (8 + Math.floor(Math.random() * 3))
+      );
+    }
+  });
+
   render();
 }, 10000);
 
-// recovery
+/* 🔺 SMALL RECOVERY */
 setInterval(() => {
-  Object.keys(locations).forEach(
-    k => locations[k] = clamp(locations[k] + 3)
-  );
+  Object.keys(locations).forEach((k) => {
+    locations[k] = clamp(locations[k] + 3);
+  });
+
   render();
 }, 30000);
 
-// credibility drop
+/* 💥 MAJOR CREDIBILITY DROP */
 setInterval(() => {
-  Object.keys(locations).forEach(
-    k => locations[k] = clamp(locations[k] - 25)
-  );
+  Object.keys(locations).forEach((k) => {
+    locations[k] = clamp(locations[k] - 25);
+  });
+
   render();
 }, 40 * 60 * 1000);
