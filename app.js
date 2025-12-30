@@ -1,6 +1,5 @@
 const MAX = 82;
 const MIN = 0;
-const STORAGE_KEY = "helmet_obedience_data";
 
 function clamp(v) {
   return Math.max(MIN, Math.min(MAX, v));
@@ -17,60 +16,46 @@ function updateColor(tile, value) {
   else tile.classList.add("safe");
 }
 
-/* ---------------- LOAD / SAVE ---------------- */
-
-function loadLocations() {
-  try {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-      const parsed = JSON.parse(stored);
-      if (parsed && typeof parsed === "object") return parsed;
-    }
-  } catch (e) {
-    console.warn("Storage read failed, resetting.");
-  }
-
-  // fallback: first-time random init
-  const fresh = {
-    benz: randomStart(),
-    ramesh: randomStart(),
-    machavaram: randomStart(),
-    eluru: randomStart(),
-    suryaraopeta: randomStart(),
-  };
-
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(fresh));
-  return fresh;
+/* -------- TIME (HOUR ONLY) -------- */
+function getCurrentHour() {
+  const now = new Date();
+  return String(now.getHours()).padStart(2, "0") + ":00";
 }
 
-function saveLocations() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(locations));
+function updateTime() {
+  const hour = getCurrentHour();
+  Object.keys(locations).forEach((k) => {
+    document.getElementById(k + "Time").textContent = hour;
+  });
 }
 
-/* ---------------- STATE ---------------- */
+/* -------- STATE -------- */
+const locations = {
+  benz: randomStart(),
+  ramesh: randomStart(),
+  machavaram: randomStart(),
+  eluru: randomStart(),
+  suryaraopeta: randomStart(),
+};
 
-const locations = loadLocations();
-
-/* ---------------- RENDER ---------------- */
-
+/* -------- RENDER -------- */
 function render() {
   Object.keys(locations).forEach((k) => {
     document.getElementById(k + "Value").textContent = locations[k] + "%";
     updateColor(document.getElementById(k + "Tile"), locations[k]);
   });
+  updateTime();
 }
 
 render();
 
-/* 🔻 DECAY + ENFORCEMENT GIMMICK */
+/* 🔻 DECAY + CRACKDOWN LOGIC */
 setInterval(() => {
   Object.keys(locations).forEach((k) => {
-    // decay
     locations[k] = clamp(
       locations[k] - (2 + Math.floor(Math.random() * 2))
     );
 
-    // 🚨 crackdown bounce
     if (locations[k] < 55) {
       locations[k] = clamp(
         locations[k] + (8 + Math.floor(Math.random() * 3))
@@ -78,7 +63,6 @@ setInterval(() => {
     }
   });
 
-  saveLocations();
   render();
 }, 10000);
 
@@ -88,7 +72,6 @@ setInterval(() => {
     locations[k] = clamp(locations[k] + 3);
   });
 
-  saveLocations();
   render();
 }, 30000);
 
@@ -98,6 +81,8 @@ setInterval(() => {
     locations[k] = clamp(locations[k] - 25);
   });
 
-  saveLocations();
   render();
 }, 40 * 60 * 1000);
+
+/* ⏱ Update hour exactly when it changes */
+setInterval(updateTime, 60 * 1000);
